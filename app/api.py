@@ -40,8 +40,15 @@ async def predict_mpg(UserInput: UserInput):
 
 if __name__ == "__main__":
     uvicorn.run(app, port=8080, host='0.0.0.0')
-#
-# {
+
+# docker build -t mpg-prediction-app -f app/Dockerfile app/
+# docker run -p 80:80 mpg-prediction-app:latest
+
+# curl -X 'POST' \
+#   'http://0.0.0.0/predict/' \
+#   -H 'accept: application/json' \
+#   -H 'Content-Type: application/json' \
+#   -d '{
 #   "Cylinders": 5,
 #   "Displacement": 100,
 #   "Horsepower": 100,
@@ -51,7 +58,4 @@ if __name__ == "__main__":
 #   "Europe": 1,
 #   "Japan": 0,
 #   "USA": 0
-# }
-
-# docker build -t mpg-prediction-app -f app/Dockerfile app/
-# docker run -p 80:80 mpg-prediction-app:latest
+# }'
