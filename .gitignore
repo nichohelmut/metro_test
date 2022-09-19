@@ -1,3 +1,4 @@
 /ms/
 .DS_Store
 .idea/
+/notebooks/.ipynb_checkpoints/*

@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import pandas as pd
 from pandas import DataFrame
 
@@ -26,11 +25,14 @@ def load_data() -> DataFrame:
     return dataset_dummies
 
 
-def plot_loss(history):
-    plt.plot(history.history['loss'], label='loss')
-    plt.plot(history.history['val_loss'], label='val_loss')
-    plt.ylim([0, 10])
-    plt.xlabel('Epoch')
-    plt.ylabel('Error [MPG]')
-    plt.legend()
-    plt.grid(True)
+def train_test_split(data: DataFrame) -> tuple:
+    train_dataset = data.sample(frac=0.8, random_state=0)
+    test_dataset = data.drop(train_dataset.index)
+
+    train_features = train_dataset.copy()
+    test_features = test_dataset.copy()
+
+    train_labels = train_features.pop('MPG')
+    test_labels = test_features.pop('MPG')
+
+    return train_features, test_features, train_labels, test_labels

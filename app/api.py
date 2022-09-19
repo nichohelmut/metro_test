@@ -23,7 +23,7 @@ class UserInput(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to Your Sentiment Classification FastAPI"}
+    return {"message": "Welcome to MPG Prediction FastAPI"}
 
 
 @app.post("/predict/")
@@ -32,30 +32,13 @@ async def predict_mpg(UserInput: UserInput):
         [UserInput.Cylinders, UserInput.Displacement, UserInput.Horsepower, UserInput.Weight, UserInput.Acceleration,
          UserInput.Model_Year, UserInput.Europe, UserInput.Japan, UserInput.USA]).ravel()
 
+    prediction_rounded = np.round(prediciton[0], 2)
+
     return {
 
-        "Predicted mpg for your car is {}".format(np.round(prediciton[0], 2))
+        "Predicted mpg for your car is {}".format(prediction_rounded)
     }
 
 
 if __name__ == "__main__":
     uvicorn.run(app, port=8080, host='0.0.0.0')
-
-# docker build -t mpg-prediction-app -f app/Dockerfile app/
-# docker run -p 80:80 mpg-prediction-app:latest
-
-# curl -X 'POST' \
-#   'http://0.0.0.0/predict/' \
-#   -H 'accept: application/json' \
-#   -H 'Content-Type: application/json' \
-#   -d '{
-#   "Cylinders": 5,
-#   "Displacement": 100,
-#   "Horsepower": 100,
-#   "Weight": 2500,
-#   "Acceleration": 15,
-#   "Model_Year": 77,
-#   "Europe": 1,
-#   "Japan": 0,
-#   "USA": 0
-# }'
