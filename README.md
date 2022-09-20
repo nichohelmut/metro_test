@@ -53,7 +53,7 @@ git clone https://github.com/nichohelmut/metro_test.git
 2. Move into 'metro_task' folder
 
 ```
-cd metro_task
+cd metro_test
 ```
 
 3. Build the container
