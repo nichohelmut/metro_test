@@ -20,4 +20,4 @@ COPY --from=model_image /model/* ./artifacts
 # runs tests
 RUN pytest
 
-CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "80"]
