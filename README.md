@@ -27,7 +27,7 @@ directory in artifacts folder. Training the DNN model was not the focus of this 
 
 ### App Folder
 
-The FastAPI framework was chosen for building the Web API. In order to validate the input fields, pydentic and pytest 
+The FastAPI framework was chosen for building the Web API. In order to validate the input fields, pydentic and pytest
 are used.
 
 The predict entry point provides two http requests which are get and post. The first (get) provides a text output with
@@ -50,19 +50,25 @@ copying the needed artifacts, we do not include unneeded files in the app folder
 git clone https://github.com/nichohelmut/metro_test.git
 ```
 
-2. Build the container
+2. Move into 'metro_task' folder
+
+```
+cd metro_task
+```
+
+3. Build the container
 
 ```
 docker build -t mpg-prediction-total -f Dockerfile . --progress=plain
 ```
 
-3. Run the container
+4. Run the container
 
 ```
 docker run -p 80:80 mpg-prediction-total:latest
 ```
 
-4. Enter the curl command in your CLI
+5. Enter the curl command in your CLI
 
 ```
 curl -X 'POST' \
